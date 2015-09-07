@@ -131,7 +131,12 @@
                 barData: '=',
                 barColors: '=',
                 barStacked: '=',
-                barResize: '='
+                barResize: '=',
+                barGap: '=',
+                barSizeRatio: '=',
+                barGrid: '=',
+                barAxes: '=',
+                barHideHover: '='
             },
             link: function(scope, elem) {
                 scope.$watch('barData', function() {
@@ -148,6 +153,16 @@
                             scope.barStacked = JSON.parse(scope.barStacked);
                         if (typeof scope.barResize === 'string')
                             scope.barResize = JSON.parse(scope.barResize);
+                        if (typeof scope.barGap === 'string')
+                            scope.barGap = JSON.parse(scope.barGap);
+                        if (typeof scope.barSizeRatio === 'string')
+                            scope.barSizeRatio = JSON.parse(scope.barSizeRatio);
+                        if (typeof scope.barGrid === 'string')
+                            scope.barGrid = JSON.parse(scope.barGrid);
+                        if (typeof scope.barAxes === 'string')
+                            scope.barAxes = JSON.parse(scope.barAxes);
+                        if (typeof scope.barHideHover === 'string')
+                            scope.barHideHover = JSON.parse(scope.barHideHover);
                         if (!scope.barInstance) {
                             scope.barInstance = new Morris.Bar({
                                 element: elem,
@@ -158,7 +173,12 @@
                                 barColors: scope.barColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
                                 stacked: scope.barStacked || false,
                                 resize: scope.barResize || false,
-                                xLabelMargin: 2
+                                xLabelMargin: 2,
+                                barGap: scope.barGap || 7,
+                                barSizeRatio: scope.barSizeRatio || .8,
+                                grid: scope.barGrid || true,
+                                axes: scope.barAxes || true,
+                                hideHover: scope.barHideHover || false
                             });
                         } else {
                             scope.barInstance.setData(scope.barData);
